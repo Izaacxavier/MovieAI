@@ -10,16 +10,32 @@ export function Home() {
 
   const [movies, setMovies] = useState([]);
 
-
   useEffect(() => {
     fetch(`${apiUrl}popular?api_key=${keyApi}&language=pt-BR`)
       .then((response) => response.json())
       .then((data) => {
         const getMovies = data.results.slice(0, 3);
-        setMovies(getMovies);
+        fetchTrailers(getMovies);
         console.log(data.results)
       });
   }, []);
+
+
+  function fetchTrailers(movies) {
+    const promises = movies.map((movie) =>
+      fetch(`${apiUrl}${movie.id}/videos?api_key=${keyApi}&language=en-US`)
+        .then((response) => response.json())
+        .then((data) => {
+          const trailers = data.results.filter((video) => video.type === "Trailer");
+          const trailerKey = trailers.length > 0 ? trailers[0].key : null;
+          return { ...movie, trailerKey };
+        })
+    );
+
+    Promise.all(promises).then((moviesWithTrailers) => {
+      setMovies(moviesWithTrailers);
+    });
+  }
 
   function newMoviesSuggestions() {
     console.log("clicou");
@@ -45,9 +61,13 @@ export function Home() {
             release_date={movie.release_date.slice(0, 4)}
             language={movie.original_language}
             movieId={movie.id}
+            trailerKey={movie.trailerKey}
+
+            trailerLink
           />
         ))}
       </Content>
     </Container>
+    
   );
 }

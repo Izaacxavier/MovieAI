@@ -11,6 +11,8 @@ export const Content = styled.section`
 
   @media (max-width: 740px){
         flex-direction: column;
+        gap: 40px;
+        align-items: center;
     }
 `;
 export const MovieDatails = styled.div`
@@ -31,6 +33,10 @@ export const MovieDatails = styled.div`
       line-height: 140%;
     }
   }
+
+  @media (max-width: 740px){
+        padding-bottom: 32px;
+    }
 `;
 export const ContentDetails = styled.div` 
     display: flex;
