@@ -1,4 +1,16 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const pulseAnimation = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
 
 export const Container = styled.button`
   display: flex;
@@ -35,8 +47,9 @@ export const Container = styled.button`
   > svg {
     width: 18px;
     color: ${({ theme }) => theme.COLORS.WHITE};
+    animation: ${pulseAnimation} 2s infinite;
   }
-  > span {
+  .animation {
     width: 30px;
     height: 30px;
     background: rgba(255, 255, 255, 0.3);
@@ -44,5 +57,23 @@ export const Container = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: ${pulseAnimation} 2s infinite;
   }
+  @keyframes animationAi {
+  0%{
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  60%{
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100%{
+    transform: scale(1);
+  }
+}
 `;
+
+
+
+

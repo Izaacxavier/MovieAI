@@ -1,12 +1,21 @@
-import { Container, Content, ContentButton, ContentPoster, ContentSinopse, MovieDatails, TagLine, ContentDetails } from "./styles";
+import {
+  Container,
+  Content,
+  ContentButton,
+  ContentPoster,
+  ContentSinopse,
+  MovieDatails,
+  TagLine,
+  ContentDetails,
+} from "./styles";
 import { Header } from "../../componenets/header";
-import { Link, useParams } from "react-router-dom";
-import { CalendarBlank, Clock, Dot } from "@phosphor-icons/react";
+import { useParams } from "react-router-dom";
+import { CalendarBlank, Clock } from "@phosphor-icons/react";
 import { useState, useEffect } from "react";
 import { keyApi } from "../../config/keyApi";
 import { Button } from "../../componenets/button";
-import iconShare from '../../assets/iconshare.svg'
-import icon from '../../assets/icone.svg'
+import iconShare from "../../assets/iconshare.svg";
+import icon from "../../assets/icone.svg";
 
 export function Details() {
   const apiUrl = "https://api.themoviedb.org/3/movie/";
@@ -14,6 +23,7 @@ export function Details() {
   const { id } = useParams();
 
   const [movie, setMovie] = useState({});
+  const [backgroundPoster, setBackgroundPoster] = useState();
 
   useEffect(() => {
     fetch(`${apiUrl}${id}?api_key=${keyApi}&language=pt-BR`)
@@ -30,10 +40,12 @@ export function Details() {
           genero1: data.genres[0].name,
           genero2: data.genres[1].name,
           genero3: data.genres[2].name,
-          tagline: data.tagline
+          tagline: data.tagline,
+          contraCapa: `${imagePath}${data.backdrop_path}`,
         };
         console.log(data);
         setMovie(movie);
+        setBackgroundPoster(movie.contraCapa);
       });
   }, [id]);
 
@@ -44,9 +56,9 @@ export function Details() {
         <ContentPoster>
           <img src={movie.poster} alt="" />
           <ContentButton>
-          <Button title="Assitir trailer" icon={icon}/>
-          <Button icon={iconShare} variantStyles/>
-          </ContentButton>         
+            <Button title="Assitir trailer" icon={icon} />
+            <Button icon={iconShare} variantStyles />
+          </ContentButton>
         </ContentPoster>
         <MovieDatails>
           <div className="title_movie">
@@ -65,7 +77,7 @@ export function Details() {
             <span>{movie.genero3}</span>
           </ContentDetails>
           <TagLine>
-          <small>{movie.tagline}</small>
+            <small>{movie.tagline}</small>
           </TagLine>
           <ContentSinopse>
             <h3>Sinopse</h3>

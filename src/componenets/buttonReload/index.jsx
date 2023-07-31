@@ -10,7 +10,7 @@ export function ButtonReload({ title, loading = false, shuffleMovies}) {
      onClick={shuffleMovies}
      >
       {loading ? "Carregando..." : `${title}`}
-      <span>{loading ? <CircleNotch /> : <Lightning />}</span>
+      <span className="animation">{loading ? <CircleNotch /> : <Lightning />}</span>
     </Container>
   );
 }

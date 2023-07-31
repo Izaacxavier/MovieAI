@@ -12,5 +12,9 @@ export const Content = styled.section`
     height: 100%;
     justify-content: space-between;
     gap: 5px;
+
+    @media (max-width: 1035px){
+        flex-direction: column;
+    }
 `
 

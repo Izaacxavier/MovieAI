@@ -9,45 +9,17 @@ export function Home() {
   const imagePath = "https://image.tmdb.org/t/p/original";
 
   const [movies, setMovies] = useState([]);
+
+
   useEffect(() => {
     fetch(`${apiUrl}popular?api_key=${keyApi}&language=pt-BR`)
       .then((response) => response.json())
       .then((data) => {
-        // const shuffledMovies = data.results.sort(() => Math.random() - 0.5);
         const getMovies = data.results.slice(0, 3);
         setMovies(getMovies);
+        console.log(data.results)
       });
   }, []);
-
-  useEffect(() => {
-    const fetchMovieDetails = async () => {
-      try {
-        const movieDetailsPromises = movies.map((movie) =>
-          fetch(`${apiUrl}${movie.id}?api_key=${keyApi}`).then((response) =>
-            response.json()
-          )
-        );
-
-        const movieDetailsData = await Promise.all(movieDetailsPromises);
-        setMovies((prevMovies) =>
-          prevMovies.map((movie, index) => ({
-            ...movie,
-            duration: convertToHoursAndMinutes(movieDetailsData[index].runtime),
-          }))
-        );
-      } catch (error) {
-        console.error("Error fetching movie details:", error);
-      }
-    };
-
-    fetchMovieDetails();
-  }, [movies]);
-
-  const convertToHoursAndMinutes = (runtime) => {
-    const hours = Math.floor(runtime / 60);
-    const minutes = runtime % 60;
-    return `${hours}h ${minutes}m`;
-  };
 
   function newMoviesSuggestions() {
     console.log("clicou");
@@ -71,7 +43,7 @@ export function Home() {
             poster={imagePath + movie.poster_path}
             vote_average={movie.vote_average}
             release_date={movie.release_date.slice(0, 4)}
-            duration={movie.duration}
+            language={movie.original_language}
             movieId={movie.id}
           />
         ))}

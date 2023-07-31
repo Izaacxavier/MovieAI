@@ -8,6 +8,10 @@ export const Content = styled.section`
   display: flex;
   padding-top: 4rem;
   gap: 10%;
+
+  @media (max-width: 740px){
+        flex-direction: column;
+    }
 `;
 export const MovieDatails = styled.div`
   display: flex;
@@ -32,7 +36,7 @@ export const ContentDetails = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
 
     > span {
       display: flex;

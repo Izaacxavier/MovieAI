@@ -14,6 +14,7 @@ export const Container = styled(Link)`
   border: none;
   border-radius: 4px;
   gap: 8px;
+  text-decoration: none;
   cursor: pointer;
   background: rgb(131, 35, 255);
   background: linear-gradient(

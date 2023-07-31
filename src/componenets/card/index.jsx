@@ -1,6 +1,5 @@
-import { CalendarBlank, Clock, Play, Star } from "@phosphor-icons/react";
+import { CalendarBlank, Globe} from "@phosphor-icons/react";
 import {Container, Header, Main, Footer, ContainerButton, ContainerButtonSinopse,ContainerButtonShared } from "./styles";
-import img1 from "../../assets/img1.svg";
 import star from "../../assets/star.svg";
 import { Button } from "../button";
 import ButtonIcon from '../../assets/icone.svg'
@@ -8,7 +7,7 @@ import IconShare from '../../assets/iconshare.svg'
 import IconNote from '../../assets/iconnote.svg'
 import { Link } from "react-router-dom";
 
-export function Card({title, poster, vote_average, release_date, duration, movieId}) {
+export function Card({title, poster, vote_average, release_date, language, movieId}) {
   return (
     <Container>
       <Header>
@@ -22,11 +21,11 @@ export function Card({title, poster, vote_average, release_date, duration, movie
         <img src={poster} alt="barbie movie" />
         <div className="info">
           <span>
-            <Clock /> {duration}
+          <Globe/>{language}/pt-br
           </span>
           <span>
             {" "}
-            <CalendarBlank /> {release_date}
+            <CalendarBlank />{release_date}
           </span>
         </div>
       </Main>
