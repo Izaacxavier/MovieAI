@@ -1,6 +1,6 @@
 import { Container } from './styles'
 
-export function Button ({icon, title, variantStyles, titleAlt, isLink}){
+export function Button ({icon, title, variantStyles, titleAlt}){
     
         return(
             <Container 

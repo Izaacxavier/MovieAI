@@ -4,11 +4,9 @@ import { Container } from "./styles";
 
 export function ButtonBackToHome({ title}) {
   return (
-    <Link to="/">
-    <Container type="button">
+    <Container to="/">
       {title}
       <span><ArrowArcLeft /></span>
     </Container>
-    </Link>
   );
 }

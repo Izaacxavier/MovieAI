@@ -9,23 +9,23 @@ export function Home() {
   const imagePath = "https://image.tmdb.org/t/p/original";
 
   const [movies, setMovies] = useState([]);
-    
   useEffect(() => {
     fetch(`${apiUrl}popular?api_key=${keyApi}&language=pt-BR`)
-    .then(response => response.json())
-    .then(data => {
-      // const shuffledMovies = data.results.sort(() => Math.random() - 0.5);
-      const getMovies = data.results.slice(0,3)
-      setMovies(getMovies)
-    })
+      .then((response) => response.json())
+      .then((data) => {
+        // const shuffledMovies = data.results.sort(() => Math.random() - 0.5);
+        const getMovies = data.results.slice(0, 3);
+        setMovies(getMovies);
+      });
   }, []);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
         const movieDetailsPromises = movies.map((movie) =>
-          fetch(`${apiUrl}${movie.id}?api_key=${keyApi}`)
-            .then((response) => response.json())
+          fetch(`${apiUrl}${movie.id}?api_key=${keyApi}`).then((response) =>
+            response.json()
+          )
         );
 
         const movieDetailsData = await Promise.all(movieDetailsPromises);
@@ -49,21 +49,32 @@ export function Home() {
     return `${hours}h ${minutes}m`;
   };
 
+  function newMoviesSuggestions() {
+    console.log("clicou");
+    fetch(`${apiUrl}popular?api_key=${keyApi}&language=pt-BR`)
+      .then((response) => response.json())
+      .then((data) => {
+        data.results.sort(() => Math.random() - 0.5);
+        const getMovies = data.results.slice(0, 3);
+        setMovies(getMovies);
+      });
+  }
+
   return (
     <Container>
-        <Header/>
-        <Content>
-      {movies.map((movie) => (
-        <Card
-          key={movie.id}
-          title={movie.title}
-          poster={imagePath + movie.poster_path}
-          vote_average={movie.vote_average}
-          release_date={movie.release_date.slice(0, 4)}
-          duration={movie.duration}
-          movieId={movie.id}
-        />
-      ))}
+      <Header newMoviesSuggestions={newMoviesSuggestions} />
+      <Content>
+        {movies.map((movie) => (
+          <Card
+            key={movie.id}
+            title={movie.title}
+            poster={imagePath + movie.poster_path}
+            vote_average={movie.vote_average}
+            release_date={movie.release_date.slice(0, 4)}
+            duration={movie.duration}
+            movieId={movie.id}
+          />
+        ))}
       </Content>
     </Container>
   );

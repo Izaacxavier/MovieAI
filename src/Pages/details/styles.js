@@ -7,13 +7,7 @@ export const Container = styled.div`
 export const Content = styled.section`
   display: flex;
   padding-top: 4rem;
-
-
-  > img {
-    max-width: 20rem;
-    margin-right: 10%;
-    border-radius: 8px;
-  }
+  gap: 10%;
 `;
 export const MovieDatails = styled.div`
   display: flex;
@@ -21,55 +15,89 @@ export const MovieDatails = styled.div`
   width: 100%;
   color: ${({ theme }) => theme.COLORS.WHITE};
 
-  .title_movie{
-      display: flex;
-      align-items: center;
-      gap: 5px;
+  .title_movie {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 2rem;
+    line-height: 140%;
+
+    span {
       font-size: 2rem;
       line-height: 140%;
-
-      span{
-        font-size: 2rem;
-        line-height: 140%;
-
-      }
+    }
   }
-  .details{
+`;
+export const ContentDetails = styled.div` 
     display: flex;
     align-items: center;
     gap: 10px;
-    padding-bottom: 4rem;
+    padding-bottom: 2rem;
 
-    >span{
-        display: flex;
-        align-items: center;
-        gap: 5px;
+    > span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 1rem;
+      padding-top: 10px;
+      color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
+
+      > svg {
         font-size: 1rem;
-        padding-top: 10px;
-        color: ${({theme}) => theme.COLORS.BACKGROUND_600};
-
-        > svg{
-            font-size: 1rem;
-        }
-    }
-
-    >span:nth-last-child(-n+3)::before{
-        content: "▲";
-        color: ${({theme}) => theme.COLORS.BACKGROUND_600};
-    }
-  }
-
-  .sinopse{
-      width: 100%;
-
-      h3{
-          font-size: 1.25rem;
-          padding-bottom: 10px;
       }
-      p {
-        font-size: 1.125rem;
-  }
-  }
- 
+    }
 
+    > span:nth-last-child(-n + 3)::before {
+      content: "▲";
+      color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
+    }
+`
+
+export const ContentPoster = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 20rem;
+  gap: 10px;
+
+  > img {
+    width: 100%;
+    border-radius: 8px;
+  }
+`;
+
+export const ContentButton = styled.div`
+  display: flex;
+  gap: 5px;
+  align-items: center;
+
+  button:first-child {
+    width: 80%;
+  }
+  button:last-child {
+    width: 20%;
+  }
+`;
+
+export const TagLine = styled.div`
+  display: flex;
+  padding: 12px 0;
+  font-family: "Outfit", sans-serif;
+  font-weight: 100;
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 140%;
+  color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
+`;
+export const ContentSinopse = styled.div`
+  width: 100%;
+
+  h3 {
+    font-size: 1.25rem;
+    padding-bottom: 10px;
+    color: ${({ theme }) => theme.COLORS.WHITE};
+  }
+  p {
+    font-size: 1.125rem;
+    font-weight: 100;
+  }
 `;
