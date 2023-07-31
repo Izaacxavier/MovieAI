@@ -33,6 +33,7 @@ export const Main = styled.main`
     flex-direction: column;
     > img{
         width: 18.75rem;
+        border-radius: 6px;
     }
 
     .info{

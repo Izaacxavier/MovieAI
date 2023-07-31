@@ -1,16 +1,17 @@
-import { Container } from "./styles";
-import { Card } from "../card";
+import { Container, Content } from "./styles";
+import { Card } from "../../componenets/card";
 import { useState, useEffect } from "react";
 import { keyApi } from "../../config/keyApi";
+import { Header } from "../../componenets/header";
 
-export function MovieSection() {
+export function Home() {
   const apiUrl = "https://api.themoviedb.org/3/movie/";
   const imagePath = "https://image.tmdb.org/t/p/original";
 
   const [movies, setMovies] = useState([]);
     
   useEffect(() => {
-    fetch(`${apiUrl}popular?api_key=${keyApi}`)
+    fetch(`${apiUrl}popular?api_key=${keyApi}&language=pt-BR`)
     .then(response => response.json())
     .then(data => {
       // const shuffledMovies = data.results.sort(() => Math.random() - 0.5);
@@ -50,6 +51,8 @@ export function MovieSection() {
 
   return (
     <Container>
+        <Header/>
+        <Content>
       {movies.map((movie) => (
         <Card
           key={movie.id}
@@ -58,8 +61,10 @@ export function MovieSection() {
           vote_average={movie.vote_average}
           release_date={movie.release_date.slice(0, 4)}
           duration={movie.duration}
+          movieId={movie.id}
         />
       ))}
+      </Content>
     </Container>
   );
 }

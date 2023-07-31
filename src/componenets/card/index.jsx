@@ -6,37 +6,40 @@ import { Button } from "../button";
 import ButtonIcon from '../../assets/icone.svg'
 import IconShare from '../../assets/iconshare.svg'
 import IconNote from '../../assets/iconnote.svg'
+import { Link } from "react-router-dom";
 
-export function Card() {
+export function Card({title, poster, vote_average, release_date, duration, movieId}) {
   return (
     <Container>
       <Header>
-        <h1>Barbie</h1>
+        <h1>{title}</h1>
         <span>
           <img src={star} />
-          4.9
+          {vote_average}
         </span>
       </Header>
       <Main>
-        <img src={img1} alt="barbie movie" />
+        <img src={poster} alt="barbie movie" />
         <div className="info">
           <span>
-            <Clock /> 1:54:00
+            <Clock /> {duration}
           </span>
           <span>
             {" "}
-            <CalendarBlank /> 2023
+            <CalendarBlank /> {release_date}
           </span>
         </div>
       </Main>
       <Footer>
-        <Button icon={ButtonIcon} title="Assistir trailer" />
+        <Button icon={ButtonIcon} title="Assistir trailer" titleAlt="Click para assitir o trailer"/>
         <ContainerButton>
           <ContainerButtonSinopse>
-            <Button icon={IconNote} title="Sinopse" />
+          <Link to={`/details/${movieId}`}>
+            <Button icon={IconNote} titleAlt="Click para ver mais" title="Sinopse" isLink={true}/>
+          </Link>
           </ContainerButtonSinopse>
           <ContainerButtonShared>
-            <Button icon={IconShare} variantStyles/>
+            <Button icon={IconShare} titleAlt="Click para compartilhar" variantStyles/>
           </ContainerButtonShared>
         </ContainerButton>
       </Footer>
