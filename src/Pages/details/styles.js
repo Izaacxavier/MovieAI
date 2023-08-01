@@ -32,6 +32,20 @@ export const MovieDatails = styled.div`
       font-size: 2rem;
       line-height: 140%;
     }
+
+    > span:last-child{
+        display: flex;
+        font-size: 1rem;
+        line-height: 140%;
+        align-items: center;
+        color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
+        
+        >img{
+          width: 3rem;
+          margin-right: -0.625rem;
+        }
+
+    }
   }
 
   @media (max-width: 740px){
@@ -67,6 +81,7 @@ export const ContentPoster = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 20rem;
+  margin-top: -30px;
   gap: 10px;
 
   > img {

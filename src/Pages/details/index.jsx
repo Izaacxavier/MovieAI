@@ -1,12 +1,4 @@
-import {
-  Container,
-  Content,
-  ContentButton,
-  ContentPoster,
-  ContentSinopse,
-  MovieDatails,
-  TagLine,
-  ContentDetails,
+import { Container, Content, ContentButton, ContentPoster, ContentSinopse, MovieDatails, TagLine, ContentDetails,
 } from "./styles";
 import { Header } from "../../componenets/header";
 import { useParams } from "react-router-dom";
@@ -16,6 +8,8 @@ import { keyApi } from "../../config/keyApi";
 import { Button } from "../../componenets/button";
 import iconShare from "../../assets/iconshare.svg";
 import icon from "../../assets/icone.svg";
+import { Card } from "../../componenets/card";
+import star from '../../assets/star.svg'
 
 export function Details() {
   const apiUrl = "https://api.themoviedb.org/3/movie/";
@@ -41,6 +35,7 @@ export function Details() {
           genero2: data.genres[1].name,
           genero3: data.genres[2].name,
           tagline: data.tagline,
+          vote_average: data.vote_average,
           contraCapa: `${imagePath}${data.backdrop_path}`,
         };
         console.log(data);
@@ -54,7 +49,11 @@ export function Details() {
       <Header isDetails />
       <Content>
         <ContentPoster>
-          <img src={movie.poster} alt="" />
+          <Card
+          poster={movie.poster}
+          isDetailsPage
+          
+          />
           <ContentButton>
             <Button title="Assitir trailer" icon={icon} />
             <Button icon={iconShare} variantStyles />
@@ -64,6 +63,7 @@ export function Details() {
           <div className="title_movie">
             <h1>{movie.title}.</h1>
             <span>({movie.releaseDateFormatted})</span>
+            <span><img src={star}/>{movie.vote_average}</span>
           </div>
           <ContentDetails>
             <span>
@@ -83,6 +83,9 @@ export function Details() {
             <h3>Sinopse</h3>
             <p>{movie.sinopse}</p>
           </ContentSinopse>
+          <div>
+              
+          </div>
         </MovieDatails>
       </Content>
     </Container>

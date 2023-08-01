@@ -3,7 +3,7 @@ import logo from '../../assets/logo.svg'
 import { ButtonReload } from '../buttonReload'
 import { ButtonBackToHome } from '../buttonBackToHome'
 
-export function Header ({isDetails = false, newMoviesSuggestions}){ 
+export function Header ({isDetails = false, newMoviesSuggestions, isLoading}){ 
     
     return(
         <Container>
@@ -14,6 +14,7 @@ export function Header ({isDetails = false, newMoviesSuggestions}){
              <ButtonReload 
              title="Nova recomendação"
              shuffleMovies={newMoviesSuggestions}
+             loading={isLoading}
             /> }
         </Container>
     )

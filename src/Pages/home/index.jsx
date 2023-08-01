@@ -9,6 +9,7 @@ export function Home() {
   const imagePath = "https://image.tmdb.org/t/p/original";
 
   const [movies, setMovies] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
 
   useEffect(() => {
     fetch(`${apiUrl}popular?api_key=${keyApi}&language=pt-BR`)
@@ -37,20 +38,28 @@ export function Home() {
     });
   }
 
-  function newMoviesSuggestions() {
+  function newMoviesSuggestions () {
     console.log("clicou");
-    fetch(`${apiUrl}popular?api_key=${keyApi}&language=pt-BR`)
-      .then((response) => response.json())
-      .then((data) => {
-        data.results.sort(() => Math.random() - 0.5);
-        const getMovies = data.results.slice(0, 3);
-        setMovies(getMovies);
+    setisLoading(true)
+    setTimeout(() => {
+        fetch(`${apiUrl}popular?api_key=${keyApi}&language=pt-BR`)
+        .then((response) => response.json())
+        .then((data) => {
+            data.results.sort(() => Math.random() - 0.5);
+            const getMovies = data.results.slice(0, 3);
+            fetchTrailers(getMovies);
+            setisLoading(false)             
       });
+
+    }, 1000)
   }
 
   return (
     <Container>
-      <Header newMoviesSuggestions={newMoviesSuggestions} />
+      <Header
+       newMoviesSuggestions={newMoviesSuggestions}
+       isLoading={isLoading}
+       />
       <Content>
         {movies.map((movie) => (
           <Card
