@@ -4,7 +4,7 @@ import star from "../../assets/star.svg";
 import { Button } from "../button";
 import ButtonIcon from "../../assets/icone.svg";
 import IconShare from "../../assets/iconshare.svg";
-import IconNote from "../../assets/iconnote.svg";
+import IconNote from "../../assets/iconNote.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { ModalVideo } from "../modalVideo";
